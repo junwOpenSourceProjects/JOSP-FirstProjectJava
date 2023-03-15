@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.List;
 
 
 /**
@@ -32,6 +33,11 @@ public class MergeDatabaseServiceImpl extends ServiceImpl<MergeDatabaseDao,Merge
 	@Override
 	public MergeDatabase queryById(Integer rank) {
 		return this.mergeDatabaseDao.queryById(rank);
+	}
+
+	@Override
+	public List<MergeDatabase> queryAll() {
+		return this.mergeDatabaseDao.queryAll();
 	}
 
 	/**

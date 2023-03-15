@@ -29,7 +29,7 @@
 		       hgy_rank,
 		       ky_box_rank
 		from merge_database
-		where hgy_rank = 2
+		where hgy_rank = 1
 	</select>
 
 	<!--查询指定行数据-->
@@ -203,5 +203,10 @@
 		from merge_database
 		where rank = #{rank}
 	</delete>
+
+	<select id="queryAll" resultMap="MergeDatabaseMap">
+		select *
+		from merge_database;
+	</select>
 </mapper>
 

@@ -6,6 +6,8 @@ import wo1261931780.javaFirst.entity.MergeDatabase;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.List;
+
 /**
  * 红果研，考研盒子合并数据库(MergeDatabase)表服务接口
  *
@@ -21,6 +23,7 @@ public interface MergeDatabaseService extends IService<MergeDatabase> {
 	 * @return 实例对象
 	 */
 	MergeDatabase queryById(Integer rank);
+	List<MergeDatabase> queryAll();
 
 	/**
 	 * 分页查询

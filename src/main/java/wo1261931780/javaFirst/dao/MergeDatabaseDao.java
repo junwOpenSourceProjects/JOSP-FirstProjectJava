@@ -83,5 +83,7 @@ public interface MergeDatabaseDao extends BaseMapper<MergeDatabase> {
 	 */
 	int deleteById(Integer rank);
 
+	List<MergeDatabase> queryAll();
+
 }
 
