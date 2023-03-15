@@ -148,36 +148,36 @@
 		<!--=============================================================================================-->
 		<!--使用Spring AMQP和Rabbit MQ的启动程序-->
 		<!--添加以后会在控制台报错，Rabbit health check failed-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-amqp</artifactId>
-		</dependency>
-		<!--Spring for RabbitMQ 消息-->
-		<!--为您的应用程序提供一个用于发送和接收消息的通用平台，并为您的消息提供一个安全的地方，直到收到为止。-->
-		<dependency>
-			<groupId>org.springframework.amqp</groupId>
-			<artifactId>spring-rabbit-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+		<!--<dependency>-->
+		<!--	<groupId>org.springframework.boot</groupId>-->
+		<!--	<artifactId>spring-boot-starter-amqp</artifactId>-->
+		<!--</dependency>-->
+		<!--&lt;!&ndash;Spring for RabbitMQ 消息&ndash;&gt;-->
+		<!--&lt;!&ndash;为您的应用程序提供一个用于发送和接收消息的通用平台，并为您的消息提供一个安全的地方，直到收到为止。&ndash;&gt;-->
+		<!--<dependency>-->
+		<!--	<groupId>org.springframework.amqp</groupId>-->
+		<!--	<artifactId>spring-rabbit-test</artifactId>-->
+		<!--	<scope>test</scope>-->
+		<!--</dependency>-->
 		<!--Apache Kafka Streams的Spring 讯息交流-->
 		<!--使用Apache Kafka Streams构建流处理应用程序。-->
 		<!--Spring for Apache Kafka MESSAGING-->
 		<!--发布、订阅、存储和处理记录流。-->
-		<dependency>
-			<groupId>org.apache.kafka</groupId>
-			<artifactId>kafka-clients</artifactId>
-			<version>3.4.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.scala-lang</groupId>
-			<artifactId>scala-library</artifactId>
-			<version>2.13.10</version>
-		</dependency>
-		<!--JMS支持包，包括用于发送/接收JMS消息的辅助类-->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jms</artifactId>
-		</dependency>
+		<!--<dependency>-->
+		<!--	<groupId>org.apache.kafka</groupId>-->
+		<!--	<artifactId>kafka-clients</artifactId>-->
+		<!--	<version>3.4.0</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+		<!--	<groupId>org.scala-lang</groupId>-->
+		<!--	<artifactId>scala-library</artifactId>-->
+		<!--	<version>2.13.10</version>-->
+		<!--</dependency>-->
+		<!--&lt;!&ndash;JMS支持包，包括用于发送/接收JMS消息的辅助类&ndash;&gt;-->
+		<!--<dependency>-->
+		<!--	<groupId>org.springframework</groupId>-->
+		<!--	<artifactId>spring-jms</artifactId>-->
+		<!--</dependency>-->
 
 
 		<!--=============================================================================================-->
@@ -235,14 +235,14 @@
 
 		<!--使用mybatis-plus以后，这些东西就不需要了-->
 		<!--没有配置，项目报错，启动失败-->
-		<!--<dependency>-->
-		<!--	<groupId>com.baomidou</groupId>-->
-		<!--	<artifactId>mybatis-plus-boot-starter</artifactId>-->
-		<!--	<version>3.5.3.1</version>-->
-		<!--	&lt;!&ndash;依赖中一共两个jar包&ndash;&gt;-->
-		<!--	&lt;!&ndash;一个是mybatis和spring整合包&ndash;&gt;-->
-		<!--	&lt;!&ndash;一个是mybatis包&ndash;&gt;-->
-		<!--</dependency>-->
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-boot-starter</artifactId>
+			<version>3.5.3.1</version>
+			<!--依赖中一共两个jar包-->
+			<!--一个是mybatis和spring整合包-->
+			<!--一个是mybatis包-->
+		</dependency>
 
 		<!--mybatis-plus的代码生成器-->
 		<dependency>
@@ -262,38 +262,13 @@
 		<!--=============================================================================================-->
 		<!--数据库连接池-->
 		<!--=============================================================================================-->
-		<!--c3p0相关包-->
-		<!--没有配置，项目报错，启动失败-->
-		<!--<dependency>-->
-		<!--	&lt;!&ndash;c3p0是一个连接池对象&ndash;&gt;-->
-		<!--	<groupId>c3p0</groupId>-->
-		<!--	<artifactId>c3p0</artifactId>-->
-		<!--	<version>0.9.1.2</version>-->
-		<!--</dependency>-->
 
-		<!--阿里巴巴德鲁伊连接池-->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid-spring-boot-starter</artifactId>
-			<version>1.2.16</version>
-		</dependency>
 
 
 		<!--=============================================================================================-->
 		<!--redis的包-->
 		<!--=============================================================================================-->
-		<!--spring boot对redis做了整合-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-redis</artifactId>
-		</dependency>
-		<!--用来连接，操作redis-->
-		<!--Apache Commons对象池库。-->
-		<dependency>
-			<groupId>redis.clients</groupId>
-			<artifactId>jedis</artifactId>
-			<version>4.3.1</version>
-		</dependency>
+
 
 
 		<!--=============================================================================================-->
@@ -317,55 +292,13 @@
 		<!--=============================================================================================-->
 		<!--安全框架-->
 		<!--=============================================================================================-->
-		<!--spring安全 SECURITY-->
-		<!--为Spring应用程序提供高度可定制的认证和访问控制框架。-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<!--设置权限-->
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-taglibs</artifactId>
-		</dependency>
-		<!--特殊依赖，但是保留会报错，有安全问题，暂时注掉-->
-		<!--<dependency>-->
-		<!--	<groupId>com.github.penggle</groupId>-->
-		<!--	<artifactId>kaptcha</artifactId>-->
-		<!--	<version>2.3.2</version>-->
-		<!--	<exclusions>-->
-		<!--		<exclusion>-->
-		<!--			<groupId>javax.servlet</groupId>-->
-		<!--			<artifactId>javax.servlet-api</artifactId>-->
-		<!--		</exclusion>-->
-		<!--	</exclusions>-->
-		<!--</dependency>-->
-		<!--特殊依赖，但是保留会报错，有安全问题，暂时注掉-->
+
 
 
 		<!--=============================================================================================-->
 		<!--dubbo相关-->
 		<!--=============================================================================================-->
-		<!--dubbo一体式项目-->
-		<!--Dubbo是一款高性能、轻量级的开源Java RPC框架，它提供了三大核心能力：-->
-		<!--面向接口的远程方法调用，智能容错和负载均衡，以及服务自动注册和发现。-->
-		<dependency>
-			<groupId>org.apache.dubbo</groupId>
-			<artifactId>dubbo</artifactId>
-			<version>3.2.0-beta.5</version>
-		</dependency>
-		<!--zookeeper是一个为分布式应用提供一致性服务的软件，提供的功能包括：配置维护、域名服务、分布式同步、组服务等。-->
-		<!--没有配置，项目报错，启动失败-->
-		<!--<dependency>-->
-		<!--	<groupId>org.apache.zookeeper</groupId>-->
-		<!--	<artifactId>zookeeper</artifactId>-->
-		<!--	<version>3.8.1</version>-->
-		<!--</dependency>-->
+
 
 		<!--=============================================================================================-->
 		<!--文件IO-->
@@ -403,13 +336,12 @@
 		<!--=============================================================================================-->
 		<!--项目特殊依赖-->
 		<!--=============================================================================================-->
-		<!--添加这个依赖以后，阿里云效找不到依赖，以后建议全部注释掉-->
-		<!--<dependency>-->
-		<!--	<groupId>org.springframework.experimental</groupId>-->
-		<!--	<artifactId>spring-native</artifactId>-->
-		<!--	<version>0.12.0</version>-->
-		<!--</dependency>-->
-
+		<!--这里需要使用swagger技术，实际上是为了生成接口文档-->
+		<dependency>
+			<groupId>com.github.xiaoymin</groupId>
+			<artifactId>knife4j-spring-boot-starter</artifactId>
+			<version>3.0.3</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.dom4j/dom4j -->
 		<!--用于Java的灵活的XML框架-->
 		<dependency>
@@ -423,47 +355,7 @@
 			<version>2.12.2</version>
 		</dependency>
 
-		<!--阿里云短信服务-->
-		<!--阿帕奇HttpComponents客户端-->
-		<dependency>
-			<groupId>com.aliyun</groupId>
-			<artifactId>aliyun-java-sdk-core</artifactId>
-			<version>4.6.3</version>
-		</dependency>
-		<dependency>
-			<groupId>com.aliyun</groupId>
-			<artifactId>aliyun-java-sdk-dysmsapi</artifactId>
-			<version>2.2.1</version>
-		</dependency>
-		<!--这里需要使用swagger技术，实际上是为了生成接口文档-->
-		<!--<dependency>-->
-		<!--	<groupId>com.github.xiaoymin</groupId>-->
-		<!--	<artifactId>knife4j-spring-boot-starter</artifactId>-->
-		<!--	<version>3.0.3</version>-->
-		<!--</dependency>-->
-		<!--Guava是一套核心库和扩展库，包括实用类、Google的集合、I/O类等等。-->
-		<!--<dependency>-->
-		<!--	<groupId>com.google.guava</groupId>-->
-		<!--	<artifactId>guava</artifactId>-->
-		<!--	<version>31.1-jre</version>-->
-		<!--</dependency>-->
-		<!--POI报表-->
-		<!--Apache POI - 访问微软格式文件的Java API-->
-		<!--<dependency>-->
-		<!--	<groupId>org.apache.poi</groupId>-->
-		<!--	<artifactId>poi</artifactId>-->
-		<!--	<version>5.2.3</version>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-		<!--	<groupId>org.apache.poi</groupId>-->
-		<!--	<artifactId>poi-ooxml</artifactId>-->
-		<!--	<version>5.2.3</version>-->
-		<!--</dependency>-->
-		<dependency>
-			<groupId>org.modelmapper</groupId>
-			<artifactId>modelmapper</artifactId>
-			<version>3.1.1</version>
-		</dependency>
+
 	</dependencies>
 
 	<build>

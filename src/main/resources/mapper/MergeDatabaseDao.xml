@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wo1261931780.javaFirst.dao.MergeDatabaseDao">
+	<resultMap type="wo1261931780.javaFirst.entity.MergeDatabase" id="MergeDatabaseMap">
+		<result property="rank" column="rank" jdbcType="INTEGER"/>
+		<result property="studentName" column="student_name" jdbcType="VARCHAR"/>
+		<result property="scorePolite" column="score_polite" jdbcType="INTEGER"/>
+		<result property="scoreEnglish" column="score_english" jdbcType="INTEGER"/>
+		<result property="scoreProfessional1" column="score_professional_1" jdbcType="INTEGER"/>
+		<result property="scoreProfessional2" column="score_professional_2" jdbcType="INTEGER"/>
+		<result property="scoreTotal" column="score_total" jdbcType="INTEGER"/>
+		<result property="scoreTotalPublic" column="score_total_public" jdbcType="INTEGER"/>
+		<result property="scoreTotalProfessional" column="score_total_professional" jdbcType="INTEGER"/>
+		<result property="hgyRank" column="hgy_rank" jdbcType="INTEGER"/>
+		<result property="kyBoxRank" column="ky_box_rank" jdbcType="INTEGER"/>
+	</resultMap>
+
+	<!--查询单个-->
+	<select id="queryById" resultMap="MergeDatabaseMap">
+		select rank,
+		       student_name,
+		       score_polite,
+		       score_english,
+		       score_professional_1,
+		       score_professional_2,
+		       score_total,
+		       score_total_public,
+		       score_total_professional,
+		       hgy_rank,
+		       ky_box_rank
+		from merge_database
+		where rank = #{rank}
+	</select>
+
+	<!--查询指定行数据-->
+	<select id="queryAllByLimit" resultMap="MergeDatabaseMap">
+		select
+		rank, student_name, score_polite, score_english, score_professional_1, score_professional_2, score_total,
+		score_total_public, score_total_professional, hgy_rank, ky_box_rank
+		from merge_database
+		<where>
+			<if test="rank != null">
+				and rank = #{rank}
+			</if>
+			<if test="studentName != null and studentName != ''">
+				and student_name = #{studentName}
+			</if>
+			<if test="scorePolite != null">
+				and score_polite = #{scorePolite}
+			</if>
+			<if test="scoreEnglish != null">
+				and score_english = #{scoreEnglish}
+			</if>
+			<if test="scoreProfessional1 != null">
+				and score_professional_1 = #{scoreProfessional1}
+			</if>
+			<if test="scoreProfessional2 != null">
+				and score_professional_2 = #{scoreProfessional2}
+			</if>
+			<if test="scoreTotal != null">
+				and score_total = #{scoreTotal}
+			</if>
+			<if test="scoreTotalPublic != null">
+				and score_total_public = #{scoreTotalPublic}
+			</if>
+			<if test="scoreTotalProfessional != null">
+				and score_total_professional = #{scoreTotalProfessional}
+			</if>
+			<if test="hgyRank != null">
+				and hgy_rank = #{hgyRank}
+			</if>
+			<if test="kyBoxRank != null">
+				and ky_box_rank = #{kyBoxRank}
+			</if>
+		</where>
+		limit #{pageable.offset}, #{pageable.pageSize}
+	</select>
+
+	<!--统计总行数-->
+	<select id="count" resultType="java.lang.Long">
+		select count(1)
+		from merge_database
+		<where>
+			<if test="rank != null">
+				and rank = #{rank}
+			</if>
+			<if test="studentName != null and studentName != ''">
+				and student_name = #{studentName}
+			</if>
+			<if test="scorePolite != null">
+				and score_polite = #{scorePolite}
+			</if>
+			<if test="scoreEnglish != null">
+				and score_english = #{scoreEnglish}
+			</if>
+			<if test="scoreProfessional1 != null">
+				and score_professional_1 = #{scoreProfessional1}
+			</if>
+			<if test="scoreProfessional2 != null">
+				and score_professional_2 = #{scoreProfessional2}
+			</if>
+			<if test="scoreTotal != null">
+				and score_total = #{scoreTotal}
+			</if>
+			<if test="scoreTotalPublic != null">
+				and score_total_public = #{scoreTotalPublic}
+			</if>
+			<if test="scoreTotalProfessional != null">
+				and score_total_professional = #{scoreTotalProfessional}
+			</if>
+			<if test="hgyRank != null">
+				and hgy_rank = #{hgyRank}
+			</if>
+			<if test="kyBoxRank != null">
+				and ky_box_rank = #{kyBoxRank}
+			</if>
+		</where>
+	</select>
+
+	<!--新增所有列-->
+	<insert id="insert" keyProperty="rank" useGeneratedKeys="true">
+		insert into merge_database(student_name, score_polite, score_english, score_professional_1,
+		                           score_professional_2, score_total, score_total_public, score_total_professional,
+		                           hgy_rank, ky_box_rank)
+		values (#{studentName}, #{scorePolite}, #{scoreEnglish}, #{scoreProfessional1}, #{scoreProfessional2},
+		        #{scoreTotal}, #{scoreTotalPublic}, #{scoreTotalProfessional}, #{hgyRank}, #{kyBoxRank})
+	</insert>
+
+	<insert id="insertBatch" keyProperty="rank" useGeneratedKeys="true">
+		insert into merge_database(student_name, score_polite, score_english, score_professional_1,
+		score_professional_2, score_total, score_total_public, score_total_professional, hgy_rank, ky_box_rank)
+		values
+		<foreach collection="entities" item="entity" separator=",">
+			(#{entity.studentName}, #{entity.scorePolite}, #{entity.scoreEnglish}, #{entity.scoreProfessional1},
+			#{entity.scoreProfessional2}, #{entity.scoreTotal}, #{entity.scoreTotalPublic},
+			#{entity.scoreTotalProfessional}, #{entity.hgyRank}, #{entity.kyBoxRank})
+		</foreach>
+	</insert>
+
+	<insert id="insertOrUpdateBatch" keyProperty="rank" useGeneratedKeys="true">
+		insert into merge_database(student_name, score_polite, score_english, score_professional_1,
+		score_professional_2, score_total, score_total_public, score_total_professional, hgy_rank, ky_box_rank)
+		values
+		<foreach collection="entities" item="entity" separator=",">
+			(#{entity.studentName}, #{entity.scorePolite}, #{entity.scoreEnglish}, #{entity.scoreProfessional1},
+			#{entity.scoreProfessional2}, #{entity.scoreTotal}, #{entity.scoreTotalPublic},
+			#{entity.scoreTotalProfessional}, #{entity.hgyRank}, #{entity.kyBoxRank})
+		</foreach>
+		on duplicate key update
+		student_name = values(student_name),
+		score_polite = values(score_polite),
+		score_english = values(score_english),
+		score_professional_1 = values(score_professional_1),
+		score_professional_2 = values(score_professional_2),
+		score_total = values(score_total),
+		score_total_public = values(score_total_public),
+		score_total_professional = values(score_total_professional),
+		hgy_rank = values(hgy_rank),
+		ky_box_rank = values(ky_box_rank)
+	</insert>
+
+	<!--通过主键修改数据-->
+	<update id="update">
+		update merge_database
+		<set>
+			<if test="studentName != null and studentName != ''">
+				student_name = #{studentName},
+			</if>
+			<if test="scorePolite != null">
+				score_polite = #{scorePolite},
+			</if>
+			<if test="scoreEnglish != null">
+				score_english = #{scoreEnglish},
+			</if>
+			<if test="scoreProfessional1 != null">
+				score_professional_1 = #{scoreProfessional1},
+			</if>
+			<if test="scoreProfessional2 != null">
+				score_professional_2 = #{scoreProfessional2},
+			</if>
+			<if test="scoreTotal != null">
+				score_total = #{scoreTotal},
+			</if>
+			<if test="scoreTotalPublic != null">
+				score_total_public = #{scoreTotalPublic},
+			</if>
+			<if test="scoreTotalProfessional != null">
+				score_total_professional = #{scoreTotalProfessional},
+			</if>
+			<if test="hgyRank != null">
+				hgy_rank = #{hgyRank},
+			</if>
+			<if test="kyBoxRank != null">
+				ky_box_rank = #{kyBoxRank},
+			</if>
+		</set>
+		where rank = #{rank}
+	</update>
+
+	<!--通过主键删除-->
+	<delete id="deleteById">
+		delete
+		from merge_database
+		where rank = #{rank}
+	</delete>
+</mapper>
+
