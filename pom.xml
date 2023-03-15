@@ -115,13 +115,13 @@
 		<!--</dependency>-->
 
 		<!--Java Servlet是Java企业平台中的基础网络规范。开发人员可以使用Servlet API构建Web应用程序，与请求/响应工作流进行交互。-->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>4.0.1</version>
-			<scope>provided</scope>
-			<!--必须把scope变成provide，否则会和tomcat发生冲突-->
-		</dependency>
+		<!--<dependency>-->
+		<!--	<groupId>javax.servlet</groupId>-->
+		<!--	<artifactId>javax.servlet-api</artifactId>-->
+		<!--	<version>4.0.1</version>-->
+		<!--	<scope>provided</scope>-->
+		<!--	&lt;!&ndash;必须把scope变成provide，否则会和tomcat发生冲突&ndash;&gt;-->
+		<!--</dependency>-->
 		<!--spring的反应性网络WEB-->
 		<!--使用Spring WebFlux和Netty构建反应式Web应用。-->
 		<dependency>
@@ -130,10 +130,10 @@
 		</dependency>
 		<!--Spring Session WEB-->
 		<!--为管理用户会话信息提供API和实现。-->
-		<dependency>
-			<groupId>org.springframework.session</groupId>
-			<artifactId>spring-session-jdbc</artifactId>
-		</dependency>
+		<!--<dependency>-->
+		<!--	<groupId>org.springframework.session</groupId>-->
+		<!--	<artifactId>spring-session-jdbc</artifactId>-->
+		<!--</dependency>-->
 		<!--阿里巴巴的Fastjson是一个用Java编写的JSON处理器（JSON解析器+JSON生成器）。-->
 		<!--用2.0.23,否则和dubbo冲突-->
 		<dependency>
@@ -218,11 +218,11 @@
 		<!--Mybatis-->
 		<!--=============================================================================================-->
 		<!--mybatis的分页助手插件-->
-		<dependency>
-			<groupId>com.github.pagehelper</groupId>
-			<artifactId>pagehelper</artifactId>
-			<version>5.3.2</version>
-		</dependency>
+		<!--<dependency>-->
+		<!--	<groupId>com.github.pagehelper</groupId>-->
+		<!--	<artifactId>pagehelper</artifactId>-->
+		<!--	<version>5.3.2</version>-->
+		<!--</dependency>-->
 		<!--MyBatis框架SQL-->
 		<!--持久性框架，支持自定义SQL，存储过程和高级映射。MyBatis使用XML描述符或注解将对象与存储程序或SQL语句结合起来。-->
 		<!--这里是mybatis按照spring的标准，开发出来的整合包-->
@@ -274,19 +274,7 @@
 		<!--=============================================================================================-->
 		<!--TEST-->
 		<!--=============================================================================================-->
-		<!--使用包括JUnit Jupiter、Hamcrest和Mockito在内的库测试Spring Boot应用程序的入门者-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
 
-		<!--Spring Test支持用JUnit或TestNG对Spring组件进行单元测试和集成测试。-->
-		<!--它提供了一致的Spring ApplicationContexts的加载和缓存，并提供了模拟对象，你可以用它来孤立地测试你的代码。-->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-		</dependency>
 
 
 		<!--=============================================================================================-->
@@ -311,26 +299,7 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.5</version>
 		</dependency>
-		<!--Quartz是一个工作调度库，可以嵌入到java应用程序中，支持事务、持久性、集群和插件。-->
-		<dependency>
-			<groupId>org.quartz-scheduler</groupId>
-			<artifactId>quartz</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.quartz-scheduler</groupId>
-			<artifactId>quartz-jobs</artifactId>
-		</dependency>
-		<!--存储服务-->
-		<dependency>
-			<groupId>com.qiniu</groupId>
-			<artifactId>qiniu-java-sdk</artifactId>
-			<version>7.12.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-client</artifactId>
-			<version>1.19.4</version>
-		</dependency>
+
 
 
 		<!--=============================================================================================-->
@@ -342,20 +311,6 @@
 			<artifactId>knife4j-spring-boot-starter</artifactId>
 			<version>3.0.3</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.dom4j/dom4j -->
-		<!--用于Java的灵活的XML框架-->
-		<dependency>
-			<groupId>org.dom4j</groupId>
-			<artifactId>dom4j</artifactId>
-			<version>2.1.4</version>
-		</dependency>
-		<dependency>
-			<groupId>xerces</groupId>
-			<artifactId>xercesImpl</artifactId>
-			<version>2.12.2</version>
-		</dependency>
-
-
 	</dependencies>
 
 	<build>

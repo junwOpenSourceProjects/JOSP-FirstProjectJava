@@ -1,5 +1,7 @@
 package wo1261931780.javaFirst.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
+import wo1261931780.javaFirst.dao.MergeDatabaseDao;
 import wo1261931780.javaFirst.entity.MergeDatabase;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,7 +12,7 @@ import org.springframework.data.domain.PageRequest;
  * @author makejava
  * @since 2023-03-15 17:40:43
  */
-public interface MergeDatabaseService {
+public interface MergeDatabaseService extends IService<MergeDatabase> {
 
 	/**
 	 * 通过ID查询单条数据
