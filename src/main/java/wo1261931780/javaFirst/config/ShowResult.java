@@ -2,13 +2,17 @@ package wo1261931780.javaFirst.config;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Data
 @ApiModel("返回结果")
+@AllArgsConstructor
+@NoArgsConstructor
 public class ShowResult<T> {
 	@ApiModelProperty("返回类型")
 	private Integer code;
@@ -18,7 +22,6 @@ public class ShowResult<T> {
 	private String msg;
 	@ApiModelProperty("返回数据")
 	private T data;
-	private Map map = new HashMap();
 
 	/**
 	 * 请求成功

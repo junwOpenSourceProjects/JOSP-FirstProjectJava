@@ -12,19 +12,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
-    * 红果研，考研盒子合并数据库
+    * 22年复试名单
     */
-@ApiModel(description="红果研，考研盒子合并数据库")
+@ApiModel(description="22年复试名单")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName(value = "merge_database")
-public class MergeDatabase implements Serializable {
+@TableName(value = "history22_review")
+public class History22Review implements Serializable {
     /**
-     * 排名
+     * 初试排名
      */
     @TableId(value = "`rank`", type = IdType.INPUT)
-    @ApiModelProperty(value="排名")
+    @ApiModelProperty(value="初试排名")
     private Integer rank;
 
     /**
@@ -33,6 +33,27 @@ public class MergeDatabase implements Serializable {
     @TableField(value = "student_name")
     @ApiModelProperty(value="考生姓名")
     private String studentName;
+
+    /**
+     * 考生编号
+     */
+    @TableField(value = "student_code")
+    @ApiModelProperty(value="考生编号")
+    private String studentCode;
+
+    /**
+     * 学科代码
+     */
+    @TableField(value = "subject_code")
+    @ApiModelProperty(value="学科代码")
+    private Integer subjectCode;
+
+    /**
+     * 学科名称
+     */
+    @TableField(value = "subject_name")
+    @ApiModelProperty(value="学科名称")
+    private String subjectName;
 
     /**
      * 政治
@@ -83,25 +104,17 @@ public class MergeDatabase implements Serializable {
     @ApiModelProperty(value="专业课总分")
     private Integer scoreTotalProfessional;
 
-    /**
-     * 红果研排名
-     */
-    @TableField(value = "hgy_rank")
-    @ApiModelProperty(value="红果研排名")
-    private Integer hgyRank;
-
-    /**
-     * 考研盒子排名
-     */
-    @TableField(value = "ky_box_rank")
-    @ApiModelProperty(value="考研盒子排名")
-    private Integer kyBoxRank;
-
     private static final long serialVersionUID = 1L;
 
     public static final String COL_RANK = "rank";
 
     public static final String COL_STUDENT_NAME = "student_name";
+
+    public static final String COL_STUDENT_CODE = "student_code";
+
+    public static final String COL_SUBJECT_CODE = "subject_code";
+
+    public static final String COL_SUBJECT_NAME = "subject_name";
 
     public static final String COL_SCORE_POLITE = "score_polite";
 
@@ -116,8 +129,4 @@ public class MergeDatabase implements Serializable {
     public static final String COL_SCORE_TOTAL_PUBLIC = "score_total_public";
 
     public static final String COL_SCORE_TOTAL_PROFESSIONAL = "score_total_professional";
-
-    public static final String COL_HGY_RANK = "hgy_rank";
-
-    public static final String COL_KY_BOX_RANK = "ky_box_rank";
 }
