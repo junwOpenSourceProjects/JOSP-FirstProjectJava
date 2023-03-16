@@ -23,8 +23,8 @@ public class MergeDatabase implements Serializable {
     /**
      * 排名
      */
-    @TableId(value = "`rank`", type = IdType.INPUT)
     @ApiModelProperty(value="排名")
+    @TableId(value = "`rank`", type = IdType.INPUT)
     private Integer rank;
 
     /**

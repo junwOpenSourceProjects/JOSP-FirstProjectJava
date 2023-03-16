@@ -31,14 +31,14 @@ public class MergeDatabaseController {
 		return ShowResult.sendSuccess(testPage);
 	}
 
-	// @DeleteMapping("/#{id}")
-	// public ShowResult<String> delOne(@PathVariable Integer id) {
-	// 	if (StrUtil.isBlankIfStr(id)) {
-	// 		return ShowResult.sendError("id不能为空");
-	// 	}
-	// 	boolean removeById = mergeDatabaseService.removeById(id);
-	// 	return removeById ? ShowResult.sendSuccess("删除成功") : ShowResult.sendError("删除失败");
-	// }
+	@DeleteMapping("/{id}")
+	public ShowResult<String> delOne(@PathVariable Integer id) {
+		if (StrUtil.isBlankIfStr(id)) {
+			return ShowResult.sendError("id不能为空");
+		}
+		boolean removeById = mergeDatabaseService.removeById(id);
+		return removeById ? ShowResult.sendSuccess("删除成功") : ShowResult.sendError("删除失败");
+	}
 
 	// @PutMapping()
 	// public ShowResult<String> updateOne(@RequestBody MergeDatabase mergeDatabase) {
