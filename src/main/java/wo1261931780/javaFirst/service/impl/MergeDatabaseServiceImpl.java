@@ -24,67 +24,11 @@ public class MergeDatabaseServiceImpl extends ServiceImpl<MergeDatabaseDao,Merge
 	@Resource
 	private MergeDatabaseDao mergeDatabaseDao;
 
-	/**
-	 * 通过ID查询单条数据
-	 *
-	 * @param rank 主键
-	 * @return 实例对象
-	 */
-	@Override
-	public MergeDatabase queryById(Integer rank) {
-		return this.mergeDatabaseDao.queryById(rank);
-	}
-
 	@Override
 	public List<MergeDatabase> queryAll() {
 		return this.mergeDatabaseDao.queryAll();
 	}
 
-	/**
-	 * 分页查询
-	 *
-	 * @param mergeDatabase 筛选条件
-	 * @param pageRequest   分页对象
-	 * @return 查询结果
-	 */
-	@Override
-	public Page<MergeDatabase> queryByPage(MergeDatabase mergeDatabase, PageRequest pageRequest) {
-		long total = this.mergeDatabaseDao.count(mergeDatabase);
-		return new PageImpl<>(this.mergeDatabaseDao.queryAllByLimit(mergeDatabase, pageRequest), pageRequest, total);
-	}
 
-	/**
-	 * 新增数据
-	 *
-	 * @param mergeDatabase 实例对象
-	 * @return 实例对象
-	 */
-	@Override
-	public MergeDatabase insert(MergeDatabase mergeDatabase) {
-		this.mergeDatabaseDao.insert(mergeDatabase);
-		return mergeDatabase;
-	}
 
-	/**
-	 * 修改数据
-	 *
-	 * @param mergeDatabase 实例对象
-	 * @return 实例对象
-	 */
-	@Override
-	public MergeDatabase update(MergeDatabase mergeDatabase) {
-		this.mergeDatabaseDao.update(mergeDatabase);
-		return this.queryById(mergeDatabase.getRank());
-	}
-
-	/**
-	 * 通过主键删除数据
-	 *
-	 * @param rank 主键
-	 * @return 是否成功
-	 */
-	@Override
-	public boolean deleteById(Integer rank) {
-		return this.mergeDatabaseDao.deleteById(rank) > 0;
-	}
 }

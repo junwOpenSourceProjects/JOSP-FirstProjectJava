@@ -276,7 +276,19 @@
 		<!--=============================================================================================-->
 		<!--TEST-->
 		<!--=============================================================================================-->
+		<!--使用包括JUnit Jupiter、Hamcrest和Mockito在内的库测试Spring Boot应用程序的入门者-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 
+		<!--Spring Test支持用JUnit或TestNG对Spring组件进行单元测试和集成测试。-->
+		<!--它提供了一致的Spring ApplicationContexts的加载和缓存，并提供了模拟对象，你可以用它来孤立地测试你的代码。-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+		</dependency>
 
 		<!--=============================================================================================-->
 		<!--安全框架-->

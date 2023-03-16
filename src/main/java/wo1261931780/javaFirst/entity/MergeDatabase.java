@@ -1,6 +1,8 @@
 package wo1261931780.javaFirst.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -11,6 +13,8 @@ import java.io.Serializable;
  * @since 2023-03-15 17:40:43
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class MergeDatabase implements Serializable {
 	private static final long serialVersionUID = 680159516740232103L;
 	/**

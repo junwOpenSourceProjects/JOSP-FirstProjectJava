@@ -16,46 +16,5 @@ import java.util.List;
  */
 public interface MergeDatabaseService extends IService<MergeDatabase> {
 
-	/**
-	 * 通过ID查询单条数据
-	 *
-	 * @param rank 主键
-	 * @return 实例对象
-	 */
-	MergeDatabase queryById(Integer rank);
 	List<MergeDatabase> queryAll();
-
-	/**
-	 * 分页查询
-	 *
-	 * @param mergeDatabase 筛选条件
-	 * @param pageRequest   分页对象
-	 * @return 查询结果
-	 */
-	Page<MergeDatabase> queryByPage(MergeDatabase mergeDatabase, PageRequest pageRequest);
-
-	/**
-	 * 新增数据
-	 *
-	 * @param mergeDatabase 实例对象
-	 * @return 实例对象
-	 */
-	MergeDatabase insert(MergeDatabase mergeDatabase);
-
-	/**
-	 * 修改数据
-	 *
-	 * @param mergeDatabase 实例对象
-	 * @return 实例对象
-	 */
-	MergeDatabase update(MergeDatabase mergeDatabase);
-
-	/**
-	 * 通过主键删除数据
-	 *
-	 * @param rank 主键
-	 * @return 是否成功
-	 */
-	boolean deleteById(Integer rank);
-
 }
