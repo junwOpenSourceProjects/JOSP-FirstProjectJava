@@ -4,5 +4,7 @@ spring:
     username: root
     password: LIU18959297292
     driver-class-name: com.mysql.cj.jdbc.Driver
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
 server:
   port: 8081

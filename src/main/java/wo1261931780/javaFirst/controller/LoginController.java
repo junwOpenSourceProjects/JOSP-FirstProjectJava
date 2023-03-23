@@ -33,7 +33,7 @@ public class LoginController {
 	private LoginUserService loginUserService;
 	
 	@PostMapping("/login")
-	public ShowResult<String> userLogin(@RequestBody LoginUser loginUser) {
+	public ShowResult<LoginUser> userLogin(@RequestBody LoginUser loginUser) {
 		// 判断是否有id
 		if (loginUser.getId() != null) {
 			// 有id就查询
@@ -46,12 +46,13 @@ public class LoginController {
 			String passwordMd5DigestAsHex = DigestUtils.md5DigestAsHex(loginUser.getPassword().getBytes());
 			// 查询账号密码是否正确
 			lambdaQueryWrapper.eq(LoginUser::getUsername, loginUser.getUsername())
+					
 					.eq(LoginUser::getPassword, passwordMd5DigestAsHex);
-			LoginUser one = loginUserService.getOne(lambdaQueryWrapper);
-			if (StrUtil.isEmptyIfStr(one)) {
+			LoginUser userServiceOne = loginUserService.getOne(lambdaQueryWrapper);
+			if (StrUtil.isEmptyIfStr(userServiceOne)) {
 				return ShowResult.sendError("账号或密码错误");
 			}
-			return ShowResult.sendSuccess("登录成功");
+			return ShowResult.sendSuccess(userServiceOne);
 		}
 		
 		// 没有id就执行注册流程
@@ -60,7 +61,7 @@ public class LoginController {
 			//新增这里有问题，因为id是long类型，而UUID是String类型，所以会报错
 			loginUser.setPassword(DigestUtils.md5DigestAsHex(loginUser.getPassword().getBytes()));// 密码通过MD5加密，然后保存回去
 			loginUserService.insertOrUpdate(loginUser);// 插入一条数据
-			return ShowResult.sendSuccess("登录成功");
+			return ShowResult.sendSuccess(loginUser);
 		}
 		return ShowResult.sendError("登录失败");
 	}
