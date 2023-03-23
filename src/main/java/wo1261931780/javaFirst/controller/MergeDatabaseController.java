@@ -10,7 +10,7 @@ import wo1261931780.javaFirst.service.MergeDatabaseService;
 
 
 @RestController
-@RequestMapping("/api/MergeDatabase")
+@RequestMapping("/MergeDatabase")
 public class MergeDatabaseController {
 	@Autowired
 	private MergeDatabaseService mergeDatabaseService;
@@ -32,16 +32,6 @@ public class MergeDatabaseController {
 		boolean removeById = mergeDatabaseService.removeById(id);
 		return removeById ? ShowResult.sendSuccess("删除成功") : ShowResult.sendError("删除失败");
 	}
-	
-	//@PutMapping()
-	//public ShowResult<String> updateOne(@RequestBody MergeDatabase mergeDatabase) {
-	//	if (StrUtil.isBlankIfStr(mergeDatabase)) {
-	//		return ShowResult.sendError("不能为空");
-	//	}
-	//	boolean updateById = mergeDatabaseService.updateById(mergeDatabase);
-	//	return updateById ? ShowResult.sendSuccess("成功") : ShowResult.sendError("失败");
-	//}
-	
 	
 	@PostMapping()
 	public ShowResult<String> insertOne(@RequestBody MergeDatabase mergeDatabase) {

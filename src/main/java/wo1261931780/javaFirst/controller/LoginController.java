@@ -26,7 +26,7 @@ import java.util.UUID;
  * @Date 2023-03-20-08  星期四
  * @description
  */
-@RequestMapping("/api/user")
+@RequestMapping("/user")
 @RestController
 public class LoginController {
 	@Autowired
