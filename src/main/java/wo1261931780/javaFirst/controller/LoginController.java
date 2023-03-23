@@ -6,9 +6,11 @@ import cn.hutool.log.Log;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import wo1261931780.javaFirst.config.ShowResult;
 import wo1261931780.javaFirst.entity.LoginUser;
 import wo1261931780.javaFirst.service.LoginUserService;
@@ -25,11 +27,12 @@ import java.util.UUID;
  * @description
  */
 @RequestMapping("/api/user")
+@RestController
 public class LoginController {
 	@Autowired
 	private LoginUserService loginUserService;
 	
-	@PostMapping("/Login")
+	@PostMapping("/login")
 	public ShowResult<String> userLogin(@RequestBody LoginUser loginUser) {
 		// 判断是否有id
 		if (loginUser.getId() != null) {
@@ -39,9 +42,11 @@ public class LoginController {
 				return ShowResult.sendError("用户不存在");
 			}
 			LambdaQueryWrapper<LoginUser> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+			//这里密码有一个加密的过程
+			String passwordMd5DigestAsHex = DigestUtils.md5DigestAsHex(loginUser.getPassword().getBytes());
 			// 查询账号密码是否正确
-			lambdaQueryWrapper.eq(LoginUser::getName, loginUser.getName())
-					.eq(LoginUser::getPassword, loginUser.getPassword());
+			lambdaQueryWrapper.eq(LoginUser::getUsername, loginUser.getUsername())
+					.eq(LoginUser::getPassword, passwordMd5DigestAsHex);
 			LoginUser one = loginUserService.getOne(lambdaQueryWrapper);
 			if (StrUtil.isEmptyIfStr(one)) {
 				return ShowResult.sendError("账号或密码错误");
@@ -50,8 +55,10 @@ public class LoginController {
 		}
 		
 		// 没有id就执行注册流程
-		if (CharSequenceUtil.isNotEmpty(loginUser.getName()) && CharSequenceUtil.isNotEmpty(loginUser.getPassword())) {
+		if (CharSequenceUtil.isNotEmpty(loginUser.getUsername()) && CharSequenceUtil.isNotEmpty(loginUser.getPassword())) {
 			loginUser.setId(Long.valueOf(UUID.randomUUID().toString()));// 随机一个id
+			//新增这里有问题，因为id是long类型，而UUID是String类型，所以会报错
+			loginUser.setPassword(DigestUtils.md5DigestAsHex(loginUser.getPassword().getBytes()));// 密码通过MD5加密，然后保存回去
 			loginUserService.insertOrUpdate(loginUser);// 插入一条数据
 			return ShowResult.sendSuccess("登录成功");
 		}
