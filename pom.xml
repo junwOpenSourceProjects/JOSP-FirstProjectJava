@@ -247,6 +247,12 @@
 			<!--一个是mybatis和spring整合包-->
 			<!--一个是mybatis包-->
 		</dependency>
+		<!-- mybatis-plus 多数据源 -->
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+			<version>3.5.0</version>
+		</dependency>
 
 		<!--mybatis-plus的代码生成器-->
 		<dependency>
