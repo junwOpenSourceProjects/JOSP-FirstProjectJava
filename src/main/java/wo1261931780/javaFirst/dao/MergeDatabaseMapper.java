@@ -14,7 +14,7 @@ public interface MergeDatabaseMapper extends BaseMapper<MergeDatabase> {
 
     int batchInsert(@Param("list") List<MergeDatabase> list);
 
-    int insertOrUpdate(MergeDatabase record);
+    boolean insertOrUpdate(MergeDatabase record);
 
     int insertOrUpdateSelective(MergeDatabase record);
 }

@@ -21,7 +21,7 @@ public class History22ReviewService extends ServiceImpl<History22ReviewMapper, H
         return baseMapper.batchInsert(list);
     }
     
-    public int insertOrUpdate(History22Review record) {
+    public boolean insertOrUpdate(History22Review record) {
         return baseMapper.insertOrUpdate(record);
     }
     

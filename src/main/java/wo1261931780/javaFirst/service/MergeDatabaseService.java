@@ -22,7 +22,7 @@ public class MergeDatabaseService extends ServiceImpl<MergeDatabaseMapper, Merge
         return baseMapper.batchInsert(list);
     }
     
-    public int insertOrUpdate(MergeDatabase record) {
+    public boolean insertOrUpdate(MergeDatabase record) {
         return baseMapper.insertOrUpdate(record);
     }
     

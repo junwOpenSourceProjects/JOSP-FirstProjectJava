@@ -14,7 +14,7 @@ public interface History22ReviewMapper extends BaseMapper<History22Review> {
 
     int batchInsert(@Param("list") List<History22Review> list);
 
-    int insertOrUpdate(History22Review record);
+    boolean insertOrUpdate(History22Review record);
 
     int insertOrUpdateSelective(History22Review record);
 }

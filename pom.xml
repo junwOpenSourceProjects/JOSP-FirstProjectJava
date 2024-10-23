@@ -239,13 +239,13 @@
 
 		<!--使用mybatis-plus以后，这些东西就不需要了-->
 		<!--没有配置，项目报错，启动失败-->
-		<dependency>
-			<groupId>com.baomidou</groupId>
-			<artifactId>mybatis-plus-boot-starter</artifactId>
-			<version>3.5.3.1</version>
 			<!--依赖中一共两个jar包-->
 			<!--一个是mybatis和spring整合包-->
 			<!--一个是mybatis包-->
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+			<version>3.5.7</version>
 		</dependency>
 		<!-- mybatis-plus 多数据源 -->
 		<dependency>

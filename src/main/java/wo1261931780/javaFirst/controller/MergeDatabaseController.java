@@ -38,7 +38,7 @@ public class MergeDatabaseController {
 		if (StrUtil.isBlankIfStr(mergeDatabase)) {
 			return ShowResult.sendError("不能为空");
 		}
-		int insertOrUpdate = mergeDatabaseService.insertOrUpdate(mergeDatabase);
-		return insertOrUpdate > 0 ? ShowResult.sendSuccess("成功") : ShowResult.sendError("失败");
+		boolean insertOrUpdate = mergeDatabaseService.insertOrUpdate(mergeDatabase);
+		return insertOrUpdate ? ShowResult.sendSuccess("成功") : ShowResult.sendError("失败");
 	}
 }
