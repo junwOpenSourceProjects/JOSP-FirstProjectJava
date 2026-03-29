@@ -160,9 +160,75 @@ JOSP-FirstProjectJava/
 └── pom.xml                      # Maven依赖配置
 ```
 
-## 🔧 核心功能
+## 🔧 核心功能模块
 
-### 1. 多数据源配置
+### 1. 用户登录与注册
+
+```java
+// LoginController.java
+@PostMapping("/user/login")
+public ShowResult<LoginUser> userLogin(@RequestBody LoginUser loginUser) {
+    // 用户名密码验证
+    // MD5密码加密
+    // UUID生成用户ID
+    // 自动注册或登录
+}
+```
+
+**功能特性:**
+- 用户登录验证
+- 新用户自动注册
+- MD5密码加密
+- UUID生成用户ID
+- MyBatis-Plus Lambda查询
+
+### 2. 考研复试名单管理
+
+**数据表:** `history22_review` (22年复试名单)
+
+**核心字段:**
+- `rank` - 初试排名
+- `student_name` - 考生姓名
+- `student_code` - 考生编号
+- `subject_code` - 学科代码
+- `subject_name` - 学科名称
+- `score_polite` - 政治成绩
+- `score_english` - 英语成绩
+- `score_professional_1` - 专业课一成绩
+- `score_professional_2` - 专业课二成绩
+- `score_total` - 总分
+- `score_total_public` - 公共课总分
+- `score_total_professional` - 专业课总分
+
+### 3. 数据库合并工具
+
+```java
+// MergeDatabaseController.java
+@GetMapping("/MergeDatabase")
+public ShowResult<Page<MergeDatabase>> showMePage(
+    @RequestParam Integer pageSize,
+    @RequestParam Integer currentPage) {
+    // 分页查询数据库记录
+}
+
+@PostMapping("/MergeDatabase")
+public ShowResult<String> insertOne(@RequestBody MergeDatabase mergeDatabase) {
+    // 插入或更新数据
+}
+
+@DeleteMapping("/MergeDatabase/{id}")
+public ShowResult<String> delOne(@PathVariable Integer id) {
+    // 删除记录
+}
+```
+
+**功能特性:**
+- 分页查询数据库记录
+- 数据插入/更新
+- 数据删除
+- 数据库合并工具
+
+### 4. 多数据源配置
 ```java
 @Service
 @DS("slave")  // 使用从数据源
@@ -171,41 +237,36 @@ public class UserService {
 }
 ```
 
-### 2. 代码生成器
-```java
-// 运行代码生成器,自动生成Entity、Mapper、Service、Controller
-public class CodeGenerator {
-    public static void main(String[] args) {
-        FastAutoGenerator.create("url", "username", "password")
-            .globalConfig(builder -> {
-                builder.author("junw")
-                       .outputDir("src/main/java");
-            })
-            .execute();
-    }
-}
-```
+## 📊 数据库表结构
 
-### 3. CRUD基础操作
-```java
-@RestController
-@RequestMapping("/api/user")
-public class UserController {
-    @Autowired
-    private UserService userService;
-    
-    @GetMapping("/list")
-    public Result list() {
-        return Result.success(userService.list());
-    }
-    
-    @PostMapping("/save")
-    public Result save(@RequestBody User user) {
-        userService.save(user);
-        return Result.success();
-    }
-}
-```
+### 用户表 (login_user)
+
+| 字段名 | 类型 | 说明 |
+|--------|------|------|
+| id | BIGINT | 用户ID (UUID) |
+| username | VARCHAR | 用户名 |
+| password | VARCHAR | 密码 (MD5加密) |
+
+### 22年复试名单表 (history22_review)
+
+| 字段名 | 类型 | 说明 |
+|--------|------|------|
+| rank | INT | 初试排名 (主键) |
+| student_name | VARCHAR | 考生姓名 |
+| student_code | VARCHAR | 考生编号 |
+| subject_code | INT | 学科代码 |
+| subject_name | VARCHAR | 学科名称 |
+| score_polite | INT | 政治成绩 |
+| score_english | INT | 英语成绩 |
+| score_professional_1 | INT | 专业课一成绩 |
+| score_professional_2 | INT | 专业课二成绩 |
+| score_total | INT | 总分 |
+| score_total_public | INT | 公共课总分 |
+| score_total_professional | INT | 专业课总分 |
+
+### 数据库合并表 (merge_database)
+
+用于数据库迁移和合并操作的临时表结构。
 
 ## 📝 开发指南
 
@@ -265,7 +326,7 @@ mvn clean package -P prod
 
 ## 📄 许可证
 
-本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
+本项目采用 AGPL-3.0 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
 
 ## 📮 联系方式
 
