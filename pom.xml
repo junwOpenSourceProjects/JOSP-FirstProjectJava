@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.4</version>
+		<version>3.4.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>wo1261931780</groupId>
@@ -14,7 +14,7 @@
 	<name>javaFirst</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>25</java.version>
 		<!--<spring-native.version>0.12.1</spring-native.version>-->
 		<!--maven的打包配置-->
 		<!--<maven.compiler.source>8</maven.compiler.source>-->
@@ -86,9 +86,10 @@
 		<!--=============================================================================================-->
 		<!--Lombok 开发者工具-->
 		<!--帮助减少模板代码的Java注释库。-->
-		<dependency>
+			<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+			<version>1.18.40</version>
 			<optional>true</optional>
 			<scope>provided</scope>
 			<!--因为只是源代码中提供了对应的功能-->
@@ -393,7 +394,16 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.2</version>
+				<version>3.12.1</version>
+				<configuration>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>1.18.40</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
 				<!--<configuration>-->
 				<!--	<source>1.8</source>-->
 				<!--	<target>1.8</target>-->
