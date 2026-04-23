@@ -35,11 +35,128 @@
 - **代码生成器**: MyBatis-Plus Generator 自动生成代码
 
 ### 3.3 API 文档
-
 - Knife4j 集成，提供在线接口测试和 API 文档查看
 - 访问地址: http://localhost:8088/doc.html
 
-## 4. 数据库表结构
+---
+
+## 4. 架构设计
+
+### 4.1 系统架构图
+
+```mermaid
+graph TB
+    subgraph Frontend["前端层"]
+        Vue3["Vue3 Frontend<br/>JOSP-FirstProjectVue3"]
+    end
+
+    subgraph Gateway["网关层"]
+        Cors["WebCorsConfig<br/>CORS 跨域配置"]
+        Knife4j["Knife4j<br/>API 文档"]
+    end
+
+    subgraph Application["应用层"]
+        Login["LoginController<br/>登录认证"]
+        HistoryReview["History22ReviewController<br/>考研复试名单"]
+        MergeDB["MergeDatabaseController<br/>数据库合并"]
+    end
+
+    subgraph Service["服务层"]
+        LoginUserService["LoginUserService"]
+        History22ReviewService["History22ReviewService"]
+        MergeDatabaseService["MergeDatabaseService"]
+    end
+
+    subgraph Data["数据层"]
+        MyBatisPlus["MyBatis-Plus 3.5.7"]
+        DynamicDS["Dynamic DS 3.5.0<br/>多数据源"]
+        MySQL["MySQL 8.0"]
+    end
+
+    Frontend --> Cors
+    Cors --> Login
+    Cors --> HistoryReview
+    Cors --> MergeDB
+    Login --> LoginUserService
+    HistoryReview --> History22ReviewService
+    MergeDB --> MergeDatabaseService
+    LoginUserService --> MyBatisPlus
+    History22ReviewService --> MyBatisPlus
+    MergeDatabaseService --> MyBatisPlus
+    MyBatisPlus --> DynamicDS
+    DynamicDS --> MySQL
+```
+
+### 4.2 多数据源请求流程
+
+```mermaid
+sequenceDiagram
+    participant Client as 前端 Client
+    participant Controller as Controller
+    participant Service as Service
+    participant DS as @DS 注解
+    participant MasterDS as Master DS
+    participant SlaveDS as Slave DS
+    participant DB as MySQL
+
+    Client->>Controller: HTTP Request
+    Controller->>Service: 业务调用
+    Service->>DS: 切换数据源
+    alt @DS("master")
+        DS->>MasterDS: 使用主数据源
+        MasterDS->>DB: 读写操作
+    else @DS("slave")
+        DS->>SlaveDS: 使用从数据源
+        SlaveDS->>DB: 只读操作
+    end
+    DB-->>Service: 查询结果
+    Service-->>Controller: Unified Response
+    Controller-->>Client: JSON Response
+```
+
+### 4.3 核心实体关系图
+
+```mermaid
+erDiagram
+    LOGIN_USER ||--o{ HISTORY22_REVIEW : "查询"
+    MERGE_DATABASE ||--o{ LOGIN_USER : "合并"
+
+    LOGIN_USER {
+        bigint id PK "用户ID(UUID)"
+        varchar name "姓名"
+        varchar username "用户名"
+        varchar password "密码(MD5)"
+        varchar phone "手机号"
+        varchar sex "性别"
+        varchar id_number "身份证号"
+        int status "状态(0禁用/1正常)"
+        datetime create_time "创建时间"
+        datetime update_time "更新时间"
+    }
+
+    HISTORY22_REVIEW {
+        int rank PK "初试排名(主键)"
+        varchar student_name "考生姓名"
+        varchar student_code "考生编号"
+        int subject_code "学科代码"
+        varchar subject_name "学科名称"
+        int score_polite "政治成绩"
+        int score_english "英语成绩"
+        int score_professional_1 "专业课一"
+        int score_professional_2 "专业课二"
+        int score_total "总分"
+    }
+
+    MERGE_DATABASE {
+        bigint id PK "主键"
+        varchar data_key "数据键"
+        varchar data_value "数据值"
+    }
+```
+
+---
+
+## 5. 数据库表结构
 
 ### 4.1 用户表 (login_user)
 
@@ -73,7 +190,7 @@
 | score_total_public | INT | 公共课总分 |
 | score_total_professional | INT | 专业课总分 |
 
-## 5. 项目结构
+## 6. 项目结构
 
 ```
 JOSP-FirstProjectJava/
@@ -104,9 +221,9 @@ JOSP-FirstProjectJava/
 └── SPEC.md                                # 项目规格说明书
 ```
 
-## 6. 配置说明
+## 7. 配置说明
 
-### 6.1 多数据源配置
+### 7.1 多数据源配置
 
 ```yaml
 spring:
@@ -131,9 +248,9 @@ spring:
 - `@DS("master")` - 主数据源
 - `@DS("slave")` - 从数据源
 
-## 7. 构建与部署
+## 8. 构建与部署
 
-### 7.1 环境要求
+### 8.1 环境要求
 
 - JDK 25+
 - Maven 3.6+
@@ -152,9 +269,9 @@ mvn clean package -DskipTests
 mvn clean package -P prod
 ```
 
-## 8. 升级记录
+## 9. 升级记录
 
-### 8.1 本次升级 (v0.0.2-SNAPSHOT)
+### 9.1 本次升级 (v0.0.2-SNAPSHOT)
 
 - Spring Boot: 3.0.4 → 3.4.4 (LTS)
 - Java: 17 → 25
@@ -162,6 +279,6 @@ mvn clean package -P prod
 - Lombok: → 1.18.40
 - 完善项目文档
 
-### 8.2 历史版本
+### 9.2 历史版本
 
 - v0.0.1-SNAPSHOT: 初始版本，Spring Boot 3.0.4, Java 17
