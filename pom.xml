@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.4</version>
+        <version>3.4.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>wo1261931780</groupId>
@@ -15,6 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>25</java.version>
+        <mysql.version>9.2.0</mysql.version>
 		<!--<spring-native.version>0.12.1</spring-native.version>-->
 		<!--maven的打包配置-->
 		<!--<maven.compiler.source>8</maven.compiler.source>-->
